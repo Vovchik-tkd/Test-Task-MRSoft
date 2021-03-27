@@ -58,7 +58,7 @@ substrBtn.addEventListener('click', () => {
     } else {
         if (registerChecker.checked) {
             loadingPrint();
-            getResourse('http://localhost:3000/')
+            getResourse('https://mrsoft-task.herokuapp.com/')
             .then(data => {
                 data.data.forEach(async element => {
                     if (element.indexOf(input.value) != -1) {
@@ -69,7 +69,7 @@ substrBtn.addEventListener('click', () => {
             })
         } else {
             loadingPrint();
-            getResourse('http://localhost:3000/')
+            getResourse('https://mrsoft-task.herokuapp.com/')
             .then(data => {
                 data.data.forEach(async element => {
                     const el = element;
@@ -91,7 +91,7 @@ lengthBtn.addEventListener('click', () => {
         alert('Ничего не введено');
     } else {
         loadingPrint();
-        getResourse('http://localhost:3000/')
+        getResourse('https://mrsoft-task.herokuapp.com/')
         .then(data => {
             data.data.forEach(async element => {
                 if (element.length > input.value) {
