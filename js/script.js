@@ -15,6 +15,7 @@ const getResourse = async (url) => {
 };
 
 const print = (result) => {
+    resultBox.innerHTML = '';
     if (result.length == 0) {
         const span = document.createElement('span');
         span.className = 'no-result';
@@ -33,13 +34,20 @@ const print = (result) => {
     }
 }
 
+const loadingPrint = () => {
+    resultBox.innerHTML = '';
+    const span = document.createElement('span');
+    span.className = 'loading';
+    span.innerHTML = 'Загрузка...';
+    resultBox.append(span);
+}
+
 const numberChecker = () => {
-    if (typeof(input.value) == 'string') {
-        const span = document.createElement('span');
-        span.className = 'no-result';
-        span.innerHTML = 'Ошибка. Данные введены некорректно';
-        resultBox.append(span);
-    }
+    resultBox.innerHTML = '';
+    const span = document.createElement('span');
+    span.className = 'no-result';
+    span.innerHTML = 'Ошибка. Данные введены некорректно';
+    resultBox.append(span);
 }
 
 substrBtn.addEventListener('click', () => {
@@ -49,6 +57,7 @@ substrBtn.addEventListener('click', () => {
         alert('Ничего не введено');
     } else {
         if (registerChecker.checked) {
+            loadingPrint();
             getResourse('http://localhost:3000/')
             .then(data => {
                 data.data.forEach(async element => {
@@ -59,6 +68,7 @@ substrBtn.addEventListener('click', () => {
                 print(result);
             })
         } else {
+            loadingPrint();
             getResourse('http://localhost:3000/')
             .then(data => {
                 data.data.forEach(async element => {
@@ -68,7 +78,7 @@ substrBtn.addEventListener('click', () => {
                         await result.push(element);
                     }
                 });
-                print();
+                print(result);
             })
         }
     }
@@ -80,6 +90,7 @@ lengthBtn.addEventListener('click', () => {
     if (!input.value) {
         alert('Ничего не введено');
     } else {
+        loadingPrint();
         getResourse('http://localhost:3000/')
         .then(data => {
             data.data.forEach(async element => {
@@ -87,12 +98,11 @@ lengthBtn.addEventListener('click', () => {
                     await result.push(element);
                 }
             });
-            try {
-                parseInt(input.value);
-            } catch {
+            if (parseInt(input.value) * 0 != 0) {
                 numberChecker();
+            } else {
+                print(result);
             }
-            print(result);
         })
     }
 })
