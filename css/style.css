@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
     margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -50,4 +53,42 @@ body {
 
 .result-box {
     margin-top: 2em;
+}
+
+@media screen and (max-width: 768px) {
+    .search-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 5em;
+        border: 2px solid gray;
+        width: 70vw;
+        height: 10em;
+    }
+    
+    .search-input {
+        width: 80%;
+        height: 30px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, .1);
+        border: 3px solid lightgray;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .btn {
+        width: 10em;
+        height: 3em;
+        border: none;
+        background-color: lightgray;
+        color: #505050;
+        margin: 0.5em;
+    }
 }
